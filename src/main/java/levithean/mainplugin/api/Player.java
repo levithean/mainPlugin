@@ -138,4 +138,12 @@ public class Player {
                 players.showPlayer(instance, player);
         }
     }
+
+    public void teleportTo(Player target) {
+        player.teleport(target.getPlayer());
+    }
+
+    private org.bukkit.entity.Player getPlayer() {
+        return player;
+    }
 }

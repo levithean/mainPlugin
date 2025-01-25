@@ -17,6 +17,8 @@ public final class Main extends JavaPlugin {
         trigger.newCommand("heal", new CommandHeal());
         trigger.newCommand("gamemode", new CommandGamemode());
         trigger.newCommand("info", new CommandInfo());
+        trigger.newCommand("tpa", new CommandTpa());
+        trigger.newCommand("tpme", new CommandTpme());
     }
 
     @Override

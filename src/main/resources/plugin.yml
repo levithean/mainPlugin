@@ -1,0 +1,16 @@
+name: TestPlugin
+version: '${project.version}'
+main: levithean.mainplugin.Main
+api-version: '1.20'
+commands:
+  fly:
+  heal:
+  gamemode:
+    aliases:
+      - mode
+      - gm
+  info:
+    aliases:
+      - whois
+      - infos
+      - who

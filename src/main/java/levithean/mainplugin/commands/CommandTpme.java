@@ -50,7 +50,7 @@ public class CommandTpme implements CommandExecutor {
     private void showHelp() {
         player.sendEmptyLine();
         ChatManager.newHelpPage(player, prefix, 1, 1);
-        ChatManager.addtoHelpPage(player, commande, "<joueur>", "Téléporter un joueur à vous !");
+        ChatManager.addtoHelpPage(player, commande, "<joueur>", "Téléporter un joueur à vous");
         player.sendEmptyLine();
     }
 }

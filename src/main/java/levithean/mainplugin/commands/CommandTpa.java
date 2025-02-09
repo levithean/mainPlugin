@@ -1,6 +1,7 @@
 package levithean.mainplugin.commands;
 
 import levithean.mainplugin.api.ChatManager;
+import levithean.mainplugin.api.HelpPageManager;
 import levithean.mainplugin.api.Player;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -50,8 +51,8 @@ public class CommandTpa implements CommandExecutor {
 
     private void showHelp() {
         player.sendEmptyLine();
-        ChatManager.newHelpPage(player, prefix, 1, 1);
-        ChatManager.addtoHelpPage(player, commande, "<joueur>", "Se téléporter à un joueur");
+        HelpPageManager help = new HelpPageManager(player, prefix, 1, 1);
+        help.addtoHelpPage(player, commande, "<joueur>", "Se téléporter à un joueur");
         player.sendEmptyLine();
     }
 }

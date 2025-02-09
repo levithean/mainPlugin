@@ -1,6 +1,7 @@
 package levithean.mainplugin.commands;
 
 import levithean.mainplugin.api.ChatManager;
+import levithean.mainplugin.api.HelpPageManager;
 import levithean.mainplugin.api.Player;
 import org.bukkit.GameMode;
 import org.bukkit.command.Command;
@@ -127,9 +128,9 @@ public class CommandFly implements CommandExecutor {
 
     private void showHelp() {
         player.sendEmptyLine();
-        ChatManager.newHelpPage(player, prefix, 1, 1);
-        ChatManager.addtoHelpPage(player, commande, "Pouvoir voler en mode survie ou aventure");
-        ChatManager.addtoHelpPage(player, commande, "<pseudo>", "Autoriser un joueur à voler sur le serveur");
+        HelpPageManager help = new HelpPageManager(player, prefix, 1, 1);
+        help.addtoHelpPage(player, commande, "Pouvoir voler en mode survie ou aventure");
+        help.addtoHelpPage(player, commande, "<pseudo>", "Autoriser un joueur à voler sur le serveur");
         player.sendEmptyLine();
     }
 }

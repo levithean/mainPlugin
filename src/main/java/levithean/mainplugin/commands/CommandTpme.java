@@ -1,6 +1,7 @@
 package levithean.mainplugin.commands;
 
 import levithean.mainplugin.api.ChatManager;
+import levithean.mainplugin.api.HelpPageManager;
 import levithean.mainplugin.api.Player;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -23,6 +24,7 @@ public class CommandTpme implements CommandExecutor {
 
             else if(args.length == 1) {
                 Player target = new Player(args[0]);
+                Teleport(target, args[0]);
             } else
                 showHelp();
         } else
@@ -49,8 +51,8 @@ public class CommandTpme implements CommandExecutor {
 
     private void showHelp() {
         player.sendEmptyLine();
-        ChatManager.newHelpPage(player, prefix, 1, 1);
-        ChatManager.addtoHelpPage(player, commande, "<joueur>", "Téléporter un joueur à vous");
+        HelpPageManager help = new HelpPageManager(player, prefix, 1, 1);
+        help.addtoHelpPage(player, commande, "<joueur>", "Téléporter un joueur à vous");
         player.sendEmptyLine();
     }
 }

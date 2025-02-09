@@ -1,6 +1,7 @@
 package levithean.mainplugin.commands;
 
 import levithean.mainplugin.api.ChatManager;
+import levithean.mainplugin.api.HelpPageManager;
 import levithean.mainplugin.api.Player;
 import org.bukkit.GameMode;
 import org.bukkit.command.Command;
@@ -116,9 +117,9 @@ public class CommandGamemode implements CommandExecutor {
 
     private void showHelp() {
         player.sendEmptyLine();
-        ChatManager.newHelpPage(player, prefix, 1, 1);
-        ChatManager.addtoHelpPage(player, commande, "<mode>", "Changer son mode de jeu");
-        ChatManager.addtoHelpPage(player, commande, "<joueur>", "Changer le mode de jeu d'un joueur");
+        HelpPageManager help = new HelpPageManager(player, prefix, 1, 1);
+        help.addtoHelpPage(player, commande, "<mode>", "Changer son mode de jeu");
+        help.addtoHelpPage(player, commande, "<joueur>", "Changer le mode de jeu d'un joueur");
         player.sendEmptyLine();
     }
 }

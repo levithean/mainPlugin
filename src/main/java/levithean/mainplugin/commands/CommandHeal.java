@@ -1,6 +1,7 @@
 package levithean.mainplugin.commands;
 
 import levithean.mainplugin.api.ChatManager;
+import levithean.mainplugin.api.HelpPageManager;
 import levithean.mainplugin.api.Player;
 import org.bukkit.GameMode;
 import org.bukkit.command.Command;
@@ -40,7 +41,7 @@ public class CommandHeal implements CommandExecutor {
 
     private void selfHeal() {
         heal_impossible = player.hasMode(GameMode.CREATIVE) || player.hasMode(GameMode.SPECTATOR);
-        full_vie = player.hasMaxHealth() || player.hasMaxFood();
+        full_vie = player.hasMaxHealth() && player.hasMaxFood();
 
         if(heal_impossible)
             player.sendMessage("&cErreur: Vous devez être en mode survie ou aventure !");
@@ -68,7 +69,7 @@ public class CommandHeal implements CommandExecutor {
 
             else {
                 heal_impossible = target.hasMode(GameMode.CREATIVE) || target.hasMode(GameMode.SPECTATOR);
-                full_vie = target.hasMaxHealth() || target.hasMaxFood();
+                full_vie = target.hasMaxHealth() && target.hasMaxFood();
                 String cible = target.getName();
 
                 if(heal_impossible)
@@ -93,9 +94,9 @@ public class CommandHeal implements CommandExecutor {
 
     private void showHelp() {
         player.sendEmptyLine();
-        ChatManager.newHelpPage(player, prefix, 1, 1);
-        ChatManager.addtoHelpPage(player, commande, "Se guérir");
-        ChatManager.addtoHelpPage(player, commande, "[<mode>]", "Guérir un joueur");
+        HelpPageManager help = new HelpPageManager(player, prefix, 1, 1);
+        help.addtoHelpPage(player, commande, "Se guérir");
+        help.addtoHelpPage(player, commande, "[<mode>]", "Guérir un joueur");
         player.sendEmptyLine();
     }
 }

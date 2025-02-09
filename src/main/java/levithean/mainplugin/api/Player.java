@@ -1,7 +1,6 @@
 package levithean.mainplugin.api;
 
 import levithean.mainplugin.Main;
-import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.World;
@@ -42,8 +41,8 @@ public class Player {
         sendTitle(title, subtitle, 20 * 3, 20 * 5, 20 * 3);
     }
 
-    public void sendInteractiveMessage(TextComponent message_formate) {
-        player.spigot().sendMessage(message_formate);
+    public void sendInteractiveMessage(InteractMessageManager message) {
+        player.spigot().sendMessage(message.getMessage());
     }
 
     public void setMode(GameMode mode) {

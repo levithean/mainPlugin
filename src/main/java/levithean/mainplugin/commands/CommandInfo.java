@@ -1,8 +1,9 @@
 package levithean.mainplugin.commands;
 
 import levithean.mainplugin.api.ChatManager;
+import levithean.mainplugin.api.HelpPageManager;
+import levithean.mainplugin.api.InteractMessageManager;
 import levithean.mainplugin.api.Player;
-import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.GameMode;
 import org.bukkit.World;
 import org.bukkit.command.Command;
@@ -204,9 +205,9 @@ public class CommandInfo implements CommandExecutor {
 
     private void showHelp() {
         player.sendEmptyLine();
-        ChatManager.newHelpPage(player, prefix, 1, 1);
-        ChatManager.addtoHelpPage(player, commande, "Voir vos infos");
-        ChatManager.addtoHelpPage(player, commande, "<pseudo>", "Voir les infos d'un joueur");
+        HelpPageManager help = new HelpPageManager(player, prefix, 1, 1);
+        help.addtoHelpPage(player, commande, "Voir vos infos");
+        help.addtoHelpPage(player, commande, "<pseudo>", "Voir les infos d'un joueur");
         player.sendEmptyLine();
     }
 
@@ -226,16 +227,12 @@ public class CommandInfo implements CommandExecutor {
     private void addInfoPosition(Player target, String position) {
 
         if(!target.isSameAs(player.getName())) {
-            TextComponent msg_position = new TextComponent();
-            TextComponent msg_position2 = new TextComponent(position);
-            ChatManager.setInteractiveMessage(msg_position, "&6• &fPosition: ");
-            ChatManager.setInteractiveMessage(msg_position2, position);
-            ChatManager.addInteractiveText(msg_position, msg_position2);
-
-            ChatManager.setInteractiveCommand(msg_position2, "tp " + target.getName());
-            ChatManager.setHoverInteractiveText(msg_position2, "Se téléporter à &b" + target.getName() + "\n&7&oCommande: ''/tp " + target.getName() + "''");
-
-            player.sendInteractiveMessage(msg_position);
+            InteractMessageManager message = new InteractMessageManager("&6• &fPosition: ");
+            InteractMessageManager position_ = new InteractMessageManager(position);
+            message.addMessage(position_);
+            position_.addCommand("tpa " + target.getName());
+            position_.addHoverText("Se téléporter à &b" + target.getName() + "\n&7&oCommande: ''/tpa " + target.getName() + "''");
+            player.sendInteractiveMessage(message);
 
         } else
             addInfo("Position", position);
